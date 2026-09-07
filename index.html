@@ -3,520 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Haseeb Bhai | Tahir Brothers Tribute</title>
+    <title>Happy Birthday Haseeb Bhai | Tahir Brothers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold-primary: #d4af37;
-            --gold-light: #f7e7a9;
-            --gold-gradient: linear-gradient(135deg, #f9f0d0 0%, #e6ca65 30%, #b8860b 70%, #8b6508 100%);
-            --bg-dark: #07090e;
-            --bg-card: rgba(18, 22, 34, 0.8);
-            --border-gold: rgba(212, 175, 55, 0.35);
+            --bg: #090a0f;
+            --card-bg: rgba(18, 20, 29, 0.7);
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f0f2f5;
+            --text-sub: #9aa2b1;
+            --border: rgba(212, 175, 55, 0.2);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-        body { background-color: var(--bg-dark); color: #f0f0f0; overflow-x: hidden; position: relative; min-height: 100vh; }
-        #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        #confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
-
-        /* Splash Screen */
-        #splashScreen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #151b29 0%, #06080d 100%);
-            z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s; padding: 20px; text-align: center;
-        }
-        #splashScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
-        .envelope-box {
-            width: 110px; height: 110px; border-radius: 50%; background: var(--gold-gradient);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 45px rgba(212, 175, 55, 0.6); cursor: pointer; margin-bottom: 25px;
-            animation: pulseGlow 2s infinite alternate; font-size: 45px;
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); transform: scale(1); }
-            100% { box-shadow: 0 0 55px rgba(212, 175, 55, 0.85); transform: scale(1.05); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
         }
 
-        .splash-title {
-            font-family: 'Cinzel', serif; font-size: 26px; letter-spacing: 3px;
-            color: var(--gold-light); text-transform: uppercase; margin-bottom: 10px;
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            max-width: 580px;
+            width: 100%;
+            padding: 45px 35px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
-        .splash-subtitle { font-size: 14px; color: #b0b8cc; letter-spacing: 1.5px; margin-bottom: 25px; max-width: 440px; line-height: 1.6; }
-        .unveil-btn {
-            background: var(--gold-gradient); color: #0b0e14; border: none; padding: 14px 38px;
-            font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            border-radius: 50px; cursor: pointer; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--border);
+            color: var(--gold-light);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .photo-wrap {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), transparent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .photo-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background: #111;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 50px;
+            height: 1.5px;
+            background: var(--gold);
+            margin: 0 auto 25px;
+            opacity: 0.6;
+        }
+
+        .message {
+            color: #d6dbe4;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .dua-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 14px;
+            padding: 18px 20px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--gold-light);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            color: var(--text-sub);
+            text-transform: uppercase;
+        }
+
+        .footer strong {
+            color: #ffffff;
+        }
+
+        /* Minimal Audio Toggle */
+        .audio-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--gold-light);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.3s ease;
         }
-        .unveil-btn:hover { transform: translateY(-3px) scale(1.03); }
 
-        /* Content Container */
-        .main-content { position: relative; z-index: 2; max-width: 1050px; margin: 0 auto; padding: 35px 20px 90px; }
-        .site-header { text-align: center; margin-bottom: 40px; }
-        .executive-tag {
-            display: inline-flex; align-items: center; gap: 8px; padding: 7px 22px;
-            border: 1px solid var(--gold-primary); border-radius: 30px; background: rgba(212, 175, 55, 0.08);
-            color: var(--gold-light); font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+        .audio-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
         }
 
-        .hero-section { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 60px; }
-        .boss-photo-wrapper { position: relative; width: 230px; height: 260px; margin: 0 auto 25px; }
-        .photo-glow {
-            position: absolute; inset: -8px; border-radius: 26px; background: var(--gold-gradient);
-            filter: blur(14px); opacity: 0.65;
-        }
-        .boss-photo-card {
-            position: relative; width: 100%; height: 100%; border-radius: 22px; overflow: hidden;
-            border: 3px solid rgba(247, 231, 169, 0.7); box-shadow: 0 15px 35px rgba(0,0,0,0.8); background: #000;
-        }
-        .boss-photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-        .crown-badge {
-            position: absolute; top: -16px; right: -12px; background: var(--gold-gradient);
-            width: 42px; height: 42px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; font-size: 20px; border: 2px solid #ffffff; z-index: 5;
-        }
-
-        .tahir-badge {
-            margin-top: 10px; font-size: 13px; letter-spacing: 2px;
-            text-transform: uppercase; color: #a9b5cc; font-weight: 500;
-        }
-        .tahir-badge strong { color: var(--gold-light); font-weight: 700; }
-
-        .boss-title {
-            font-family: 'Cinzel', serif; font-size: clamp(28px, 4.5vw, 46px); font-weight: 800;
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-top: 8px; margin-bottom: 8px; letter-spacing: 1.5px;
-        }
-        .boss-role { font-size: 16px; color: #cbd3e3; letter-spacing: 1.5px; margin-bottom: 12px; }
-        .boss-companies { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
-        .company-pill {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 7px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--gold-light);
-        }
-
-        .section-heading {
-            font-family: 'Cinzel', serif; font-size: 24px; text-align: center;
-            color: var(--gold-light); margin-bottom: 30px; letter-spacing: 2px;
-        }
-        .section-heading::after {
-            content: ''; display: block; width: 70px; height: 2px; background: var(--gold-gradient); margin: 10px auto 0;
-        }
-
-        /* Tribute Cards */
-        .tribute-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 50px; }
-        .tribute-card {
-            background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 18px;
-            padding: 26px 20px; backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-        .tribute-card .icon {
-            font-size: 28px; margin-bottom: 14px; display: inline-block; background: rgba(212, 175, 55, 0.1);
-            width: 50px; height: 50px; line-height: 50px; text-align: center; border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        .tribute-card h3 { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 18px; margin-bottom: 10px; }
-        .tribute-card p { color: #b7c0d4; font-size: 13.5px; line-height: 1.7; }
-
-        /* Cake Section */
-        .cake-section {
-            background: linear-gradient(135deg, rgba(21, 27, 43, 0.9) 0%, rgba(11, 14, 22, 0.9) 100%);
-            border: 1px solid var(--border-gold); border-radius: 20px; padding: 40px 20px; text-align: center;
-            margin-bottom: 50px;
-        }
-        .interactive-cake { display: inline-block; margin: 20px 0; cursor: pointer; }
-        .cake-candles { display: flex; justify-content: center; gap: 18px; margin-bottom: 8px; }
-        .candle { width: 9px; height: 38px; background: linear-gradient(to bottom, #ffffff, #d4af37); border-radius: 3px; position: relative; }
-        .flame {
-            position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 13px; height: 17px;
-            background: radial-gradient(ellipse at bottom, #ffea78 0%, #ff7b00 70%, transparent 100%);
-            border-radius: 50% 50% 35% 35%; filter: drop-shadow(0 0 8px #ffbb00);
-            animation: flicker 0.7s infinite alternate ease-in-out;
-        }
-        .flame.off { opacity: 0; animation: none; }
-        @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
-            100% { transform: translateX(-50%) scale(1.15) rotate(3deg); }
-        }
-        .cake-tier-top { width: 130px; height: 34px; background: linear-gradient(135deg, #f7e7a9 0%, #d4af37 100%); border-radius: 8px 8px 0 0; margin: 0 auto; }
-        .cake-tier-bottom {
-            width: 180px; height: 44px; background: linear-gradient(135deg, #1b2438 0%, #0d121c 100%);
-            border-radius: 10px; margin: 0 auto; border: 2px solid var(--gold-primary); display: flex;
-            align-items: center; justify-content: center; color: var(--gold-light); font-size: 11px; font-weight: 700;
-        }
-        .action-btn {
-            background: var(--gold-gradient); color: #0b0e14; border: none; padding: 13px 32px;
-            font-size: 14px; font-weight: 700; letter-spacing: 1.5px; border-radius: 30px; cursor: pointer;
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35); margin-top: 8px;
-        }
-
-        /* Message Box */
-        .message-box {
-            background: linear-gradient(180deg, rgba(24, 30, 48, 0.85) 0%, rgba(14, 18, 28, 0.95) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 20px; padding: 35px 25px; margin-bottom: 45px;
-        }
-        .urdu-tribute { font-size: 15.5px; line-height: 2; color: #e3e8f4; text-align: center; max-width: 820px; margin: 0 auto; }
-        .urdu-highlight { color: var(--gold-light); font-weight: 600; }
-        .dua-box {
-            margin-top: 22px; padding: 16px 20px; background: rgba(212, 175, 55, 0.08);
-            border-radius: 14px; border-left: 4px solid var(--gold-primary); text-align: center;
-            color: #f7e7a9; font-size: 14.5px; line-height: 1.8;
-        }
-
-        /* Floating Audio Bar */
-        .audio-dock {
-            position: fixed; bottom: 18px; right: 18px; background: rgba(14, 18, 28, 0.92);
-            border: 1px solid var(--border-gold); border-radius: 50px; padding: 7px 16px;
-            display: flex; align-items: center; gap: 10px; z-index: 1000;
-        }
-        .audio-play-btn {
-            background: var(--gold-gradient); border: none; width: 34px; height: 34px; border-radius: 50%;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;
-        }
-        .audio-upload-label {
-            background: rgba(255, 255, 255, 0.08); border: 1px dashed var(--gold-primary);
-            color: var(--gold-light); padding: 5px 10px; font-size: 11px; border-radius: 20px; cursor: pointer;
-        }
-        #audioFileInput { display: none; }
-
-        .site-footer {
-            text-align: center; padding: 25px 15px; color: #7b8599; font-size: 12.5px;
-            letter-spacing: 1.5px; border-top: 1px solid rgba(255, 255, 255, 0.06); line-height: 1.8;
-        }
-        .site-footer strong { color: var(--gold-light); }
-
-        /* Modal */
-        .wish-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85);
-            display: flex; align-items: center; justify-content: center; z-index: 10001; opacity: 0;
-            visibility: hidden; transition: all 0.35s ease; padding: 20px;
-        }
-        .wish-modal.active { opacity: 1; visibility: visible; }
-        .wish-modal-card {
-            background: linear-gradient(145deg, #182030, #0c101a); border: 2px solid var(--gold-primary);
-            border-radius: 20px; padding: 35px 25px; max-width: 480px; width: 100%; text-align: center;
+        @media (max-width: 480px) {
+            .card { padding: 35px 20px; }
+            h1 { font-size: 26px; }
+            .message { font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    <canvas id="bgCanvas"></canvas>
-    <canvas id="confettiCanvas"></canvas>
 
-    <audio id="bgMusic" loop preload="auto">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">
+    <!-- Soft Ambient Audio -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="music.mp3" type="audio/mp3">
     </audio>
 
-    <div id="splashScreen">
-        <div class="envelope-box" onclick="unveilCelebration()">
-            👑
+    <main class="card">
+        <div class="tag">8th September • Celebration</div>
+
+        <div class="photo-wrap">
+            <!-- Repo mein picture ka naam haseeb_boss.png ya haseeb_boss.jpg check kar lein -->
+            <img src="haseeb_boss.png" alt="Haseeb Bhai" onerror="this.src='haseeb_boss.jpg'">
         </div>
-        <div class="splash-title">Executive Tribute</div>
-        <div class="splash-subtitle">
-            Presented with Warmth, Love & Immense Respect by<br>
-            <strong style="color: #f7e7a9;">TAHIR BROTHERS</strong>
+
+        <h1>Happy Birthday, Haseeb Bhai</h1>
+        <div class="subtitle">Babu Group of Companies • Babu Electronics</div>
+        <div class="divider"></div>
+
+        <button class="audio-btn" onclick="toggleAudio()" id="audioBtn">
+            <span>▶</span> Play Soft Music
+        </button>
+
+        <p class="message">
+            Aapki shandar qiyadat, be-misaal mehnat aur mukhlis rehnumai hum sab ke liye ek azeem misaal hai. 
+            Aap sirf ek kamyab businessman hi nahi, balkay har qadam par bhaiyon ki tarah sath dene wale azeem insan hain.
+        </p>
+
+        <div class="dua-box">
+            "Allah Ta'ala aapki umar, sehat, izzat aur karobar mein be-shumar barkat ata farmaye aur aane wala har saal mazeed taraqqi aur kamyabiyan lekar aaye. Ameen!"
         </div>
-        <button class="unveil-btn" onclick="unveilCelebration()">✨ Tap To Celebrate & Play Music</button>
-    </div>
 
-    <div class="main-content">
-        <header class="site-header">
-            <div class="executive-tag">
-                <span>⭐</span> 8th September • Executive Celebration <span>⭐</span>
-            </div>
-        </header>
-
-        <section class="hero-section">
-            <div class="boss-photo-wrapper">
-                <div class="photo-glow"></div>
-                <div class="boss-photo-card">
-                    <img src="haseeb_boss.jpg" alt="Haseeb Bhai">
-                </div>
-                <div class="crown-badge">👑</div>
-            </div>
-
-            <div class="tahir-badge">
-                Special Tribute by <strong>Tahir Brothers</strong>
-            </div>
-
-            <h1 class="boss-title">Happy Birthday, Haseeb Bhai!</h1>
-            <p class="boss-role">Visionary Businessman • Dynamic Leader • Caring Mentor</p>
-
-            <div class="boss-companies">
-                <div class="company-pill">🏢 Babu Group of Companies</div>
-                <div class="company-pill">⚡ Babu Electronics</div>
-            </div>
-        </section>
-
-        <h2 class="section-heading">The Pillars of Excellence</h2>
-        <section class="tribute-grid">
-            <div class="tribute-card">
-                <div class="icon">🏢</div>
-                <h3>Babu Group of Companies</h3>
-                <p>Relentless ambition aur futuristic vision ka azeem markaz. Haseeb Bhai ki qiyadat mein naye milestones set ho rahe hain.</p>
-            </div>
-            <div class="tribute-card">
-                <div class="icon">⚡</div>
-                <h3>Babu Electronics</h3>
-                <p>Customer trust, authentic quality, aur business standards ki pehchan. Ek azeem household brand jo be-misaal kamyabi par faiz hai.</p>
-            </div>
-            <div class="tribute-card">
-                <div class="icon">🤝</div>
-                <h3>Leadership & Brotherhood</h3>
-                <p>Ek aisa rehnuma jo sirf business nahi chalata, balkay bhaiyon ki tarah guide karta hai aur hosla buland rakhta hai.</p>
-            </div>
-        </section>
-
-        <section class="cake-section">
-            <h2 class="section-heading" style="margin-bottom: 10px;">Make A Birthday Wish</h2>
-            <div class="interactive-cake" onclick="blowCandles()">
-                <div class="cake-candles">
-                    <div class="candle"><div class="flame"></div></div>
-                    <div class="candle"><div class="flame"></div></div>
-                    <div class="candle"><div class="flame"></div></div>
-                </div>
-                <div class="cake-tier-top"></div>
-                <div class="cake-tier-bottom">8TH SEPT • HASEEB BHAI</div>
-            </div>
-            <div>
-                <button class="action-btn" onclick="blowCandles()">🎂 Blow Candles & Celebrate</button>
-            </div>
-        </section>
-
-        <section class="message-box">
-            <h2 class="section-heading" style="margin-bottom: 20px;">Tahir Brothers' Tribute</h2>
-            <div class="urdu-tribute">
-                <p>
-                    <strong>Pyare aur Muhtaram Haseeb Bhai!</strong><br>
-                    Aapki saalgirah ka din hum sab <span class="urdu-highlight">Tahir Brothers</span> ke liye be-hadd khushi aur garv ka baais hai. 
-                    Aapne jis tarah din raat mehnat, honesty aur visionary zehniyat ke sath <span class="urdu-highlight">Babu Electronics</span> aur 
-                    <span class="urdu-highlight">Babu Group of Companies</span> ko azeem maqam tak pohchaya hai, woh hum sab ke liye ek roshan misaal hai.
-                </p>
-                <br>
-                <p>
-                    Aap sirf ek kamyab tareen businessman hi nahi, balkay humare liye hamesha ek mukhlis bhai, dost aur mashal-e-rah ban kar khare rahe hain.
-                </p>
-                <div class="dua-box">
-                    🤲 <strong>Tahir Brothers ki Dua:</strong> Allah Pak aapki umar, sehat, izzat aur karobar mein be-inteha barkatein ata farmaye. 
-                    Aane wala saal aapke liye naye urooj, shandar kamyabiyan aur hamesha muskurahatein lekar aaye. Ameen Summa Ameen! ✨
-                </div>
-            </div>
-        </section>
-
-        <footer class="site-footer">
-            Dedicated with Deep Respect & Sincere Regards by <strong>Tahir Brothers</strong><br>
-            Executive Celebration for <strong>Haseeb Bhai (Boss)</strong> • 8th September
+        <footer class="footer">
+            Dedicated with Respect by <strong>Tahir Brothers</strong>
         </footer>
-    </div>
-
-    <div class="audio-dock">
-        <button class="audio-play-btn" id="musicToggleBtn" onclick="toggleMusic()">▶</button>
-        <label class="audio-upload-label" for="audioFileInput">🎵 Choose Song</label>
-        <input type="file" id="audioFileInput" accept="audio/*" onchange="handleCustomAudio(this)">
-    </div>
-
-    <div class="wish-modal" id="wishModal">
-        <div class="wish-modal-card">
-            <div style="font-size: 40px; margin-bottom: 10px;">🎉👑</div>
-            <h2 style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 20px; margin-bottom: 15px;">
-                May Your Vision Reach The Stars!
-            </h2>
-            <p style="color: #cbd5e1; font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
-                Haseeb Bhai, aapki qiyadat mein Babu Group bulandiyan chhoota rahe. Tahir Brothers ki duaayein hamesha aapke sath hain!
-            </p>
-            <button class="action-btn" onclick="closeWishModal()">JazakAllah Haseeb Bhai ❤️</button>
-        </div>
-    </div>
+    </main>
 
     <script>
-        const confettiCanvas = document.getElementById('confettiCanvas');
-        const cCtx = confettiCanvas.getContext('2d');
-        let confettiParticles = [];
+        const audio = document.getElementById('bgAudio');
+        const btn = document.getElementById('audioBtn');
+        let isPlaying = false;
 
-        function resizeConfetti() {
-            confettiCanvas.width = window.innerWidth;
-            confettiCanvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeConfetti);
-        resizeConfetti();
-
-        function createConfettiBurst(x, y, count = 90) {
-            const colors = ['#ffd700', '#f7e7a9', '#d4af37', '#ffffff', '#e65c00'];
-            for(let i = 0; i < count; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const speed = 4 + Math.random() * 8;
-                confettiParticles.push({
-                    x: x || window.innerWidth / 2,
-                    y: y || window.innerHeight / 2,
-                    vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed - 3,
-                    size: 6 + Math.random() * 6,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    rotation: Math.random() * 360,
-                    rSpeed: (Math.random() - 0.5) * 10,
-                    gravity: 0.18,
-                    life: 1,
-                    decay: 0.008 + Math.random() * 0.008
+        function toggleAudio() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    btn.innerHTML = '<span>⏸</span> Pause Music';
+                }).catch(() => {
+                    alert('Audio file repo mein "music.mp3" ke naam se upload karein.');
                 });
+            } else {
+                audio.pause();
+                isPlaying = false;
+                btn.innerHTML = '<span>▶</span> Play Soft Music';
             }
-        }
-
-        function updateConfetti() {
-            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-            for(let i = confettiParticles.length - 1; i >= 0; i--) {
-                let p = confettiParticles[i];
-                p.x += p.vx; p.y += p.vy; p.vy += p.gravity; p.rotation += p.rSpeed; p.life -= p.decay;
-                if (p.life <= 0 || p.y > window.innerHeight + 20) {
-                    confettiParticles.splice(i, 1);
-                    continue;
-                }
-                                cCtx.save();
-                cCtx.translate(p.x, p.y);
-                cCtx.rotate(p.rotation * Math.PI / 180);
-                cCtx.fillStyle = p.color;
-                cCtx.globalAlpha = p.life;
-                cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
-                cCtx.restore();
-            }
-            requestAnimationFrame(updateConfetti);
-        }
-        updateConfetti();
-
-        const bgCanvas = document.getElementById('bgCanvas');
-        const bCtx = bgCanvas.getContext('2d');
-        let bgParticles = [];
-
-        function resizeBg() {
-            bgCanvas.width = window.innerWidth;
-            bgCanvas.height = window.innerHeight;
-            bgParticles = [];
-            for (let i = 0; i < 50; i++) {
-                bgParticles.push({
-                    x: Math.random() * bgCanvas.width,
-                    y: Math.random() * bgCanvas.height,
-                    radius: Math.random() * 2 + 0.5,
-                    alpha: Math.random() * 0.7 + 0.3,
-                    speedY: Math.random() * 0.4 + 0.1,
-                    speedX: (Math.random() - 0.5) * 0.3
-                });
-            }
-        }
-        window.addEventListener('resize', resizeBg);
-        resizeBg();
-
-        function renderBg() {
-            bCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-            for(let p of bgParticles) {
-                p.y -= p.speedY; p.x += p.speedX;
-                if(p.y < 0) p.y = bgCanvas.height;
-                if(p.x < 0) p.x = bgCanvas.width;
-                if(p.x > bgCanvas.width) p.x = 0;
-                bCtx.beginPath();
-                bCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                bCtx.fillStyle = `rgba(230, 202, 101, ${p.alpha})`;
-                bCtx.fill();
-            }
-            requestAnimationFrame(renderBg);
-        }
-        renderBg();
-
-        let audioCtx = null;
-        let synthInterval = null;
-        let isSynthPlaying = false;
-
-        function startSynthMusic() {
-            if (isSynthPlaying) return;
-            try {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                if (!AudioContext) return;
-                audioCtx = new AudioContext();
-                isSynthPlaying = true;
-                const notes = [
-                    [261.63, 329.63, 392.00, 523.25],
-                    [220.00, 261.63, 329.63, 392.00],
-                    [174.61, 220.00, 261.63, 329.63],
-                    [196.00, 246.94, 293.66, 392.00]
-                ];
-                let chordIdx = 0;
-                function playChime(freq, delay, dur) {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
-                    gain.gain.setValueAtTime(0.0001, audioCtx.currentTime + delay);
-                    gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + delay + 0.05);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + delay + dur);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(audioCtx.currentTime + delay);
-                    osc.stop(audioCtx.currentTime + delay + dur + 0.1);
-                }
-                function triggerChord() {
-                    if (!isSynthPlaying) return;
-                    const chord = notes[chordIdx % notes.length];
-                    chord.forEach((note, idx) => { playChime(note, idx * 0.28, 1.8); });
-                    chordIdx++;
-                }
-                triggerChord();
-                synthInterval = setInterval(triggerChord, 2400);
-            } catch(e) {}
-        }
-
-        const bgMusic = document.getElementById('bgMusic');
-        const playBtn = document.getElementById('musicToggleBtn');
-        let isAudioPlaying = false;
-
-        function playMusic() {
-            bgMusic.play().then(() => {
-                isAudioPlaying = true;
-                playBtn.innerText = '⏸';
-            }).catch(() => {
-                startSynthMusic();
-                isAudioPlaying = true;
-                playBtn.innerText = '⏸';
-            });
-        }
-
-        function pauseMusic() {
-            bgMusic.pause();
-            isSynthPlaying = false;
-            if (synthInterval) clearInterval(synthInterval);
-            isAudioPlaying = false;
-            playBtn.innerText = '▶';
-        }
-
-        function toggleMusic() {
-            if (isAudioPlaying) pauseMusic(); else playMusic();
-        }
-
-        function handleCustomAudio(input) {
-            if (input.files && input.files[0]) {
-                isSynthPlaying = false;
-                if (synthInterval) clearInterval(synthInterval);
-                bgMusic.src = URL.createObjectURL(input.files[0]);
-                bgMusic.play();
-                isAudioPlaying = true;
-                playBtn.innerText = '⏸';
-            }
-        }
-
-        function unveilCelebration() {
-            document.getElementById('splashScreen').classList.add('hidden');
-            playMusic();
-            createConfettiBurst(window.innerWidth * 0.3, window.innerHeight * 0.4, 70);
-            createConfettiBurst(window.innerWidth * 0.7, window.innerHeight * 0.4, 70);
-        }
-
-        function blowCandles() {
-            document.querySelectorAll('.flame').forEach(f => f.classList.add('off'));
-            createConfettiBurst(window.innerWidth * 0.5, window.innerHeight * 0.6, 160);
-            setTimeout(() => { document.getElementById('wishModal').classList.add('active'); }, 600);
-        }
-
-        function closeWishModal() {
-            document.getElementById('wishModal').classList.remove('active');
         }
     </script>
 </body>
