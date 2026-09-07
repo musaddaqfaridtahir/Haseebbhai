@@ -1,220 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Haseeb Bhai | Tahir Brothers</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #090a0f;
-            --card-bg: rgba(18, 20, 29, 0.75);
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-main: #f0f2f5;
-            --text-sub: #9aa2b1;
-            --border: rgba(212, 175, 55, 0.25);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 15px;
-            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            max-width: 580px;
-            width: 100%;
-            padding: 45px 35px;
-            text-align: center;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 20px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--border);
-            color: var(--gold-light);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .photo-wrap {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 25px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold), transparent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .photo-wrap img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            background: #111;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .subtitle {
-            color: var(--gold);
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .divider {
-            width: 50px;
-            height: 1.5px;
-            background: var(--gold);
-            margin: 0 auto 25px;
-            opacity: 0.6;
-        }
-
-        .message {
-            color: #d6dbe4;
-            font-size: 15px;
-            line-height: 1.9;
-            margin-bottom: 25px;
-            font-weight: 400;
-        }
-
-        .dua-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 14px;
-            padding: 18px 20px;
-            font-size: 14px;
-            line-height: 1.8;
-            color: var(--gold-light);
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        .footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 20px;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            color: var(--text-sub);
-            text-transform: uppercase;
-        }
-
-        .footer strong {
-            color: #ffffff;
-        }
-
-        .audio-btn {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--gold-light);
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 12px;
-            cursor: pointer;
-            margin-bottom: 25px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .audio-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        @media (max-width: 480px) {
-            .card { padding: 35px 20px; }
-            h1 { font-size: 26px; }
-            .message { font-size: 14px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Haseeb Bhai! 🎉</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
 
-    <audio id="bgAudio" loop preload="auto">
-        <source src="music.mp3" type="audio/mp3">
-    </audio>
+  <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center shadow-2xl relative overflow-hidden">
+    <div class="text-6xl mb-4 animate-bounce">🎂</div>
+    
+    <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-950/60 border border-emerald-800/50 px-3 py-1 rounded-full">
+      8th September Special
+    </span>
 
-    <main class="card">
-        <div class="tag">8th September • Celebration</div>
+    <h1 class="text-3xl font-extrabold mt-4 text-white">
+      Happy Birthday, <br/><span class="text-emerald-400">Haseeb Bhai!</span>
+    </h1>
 
-        <div class="photo-wrap">
-            <img src="haseeb_boss.jpg" alt="Haseeb Bhai">
-        </div>
+    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+      Allah Tala aap ki zindagi mein sehat, lambi umar, be-shumar khushiyan aur kamyabiyan ata farmaye.
+    </p>
 
-        <h1>Happy Birthday, Haseeb Bhai</h1>
-        <div class="subtitle">Babu Group of Companies • Babu Electronics</div>
-        <div class="divider"></div>
+    <div class="my-6 p-4 rounded-xl bg-slate-800/60 border border-slate-700/50 text-left">
+      <p class="text-xs text-slate-400 uppercase tracking-wider mb-2 font-mono">// Warmest Wishes From:</p>
+      <div class="font-semibold text-slate-200 space-y-1 text-sm">
+        <p class="text-emerald-300">Tahir Brothers</p>
+        <p>• Mudassar Farid</p>
+        <p>• Mubashar Farid</p>
+        <p>• Musaddaq Farid</p>
+      </div>
+    </div>
 
-        <button class="audio-btn" onclick="toggleAudio()" id="audioBtn">
-            <span>▶</span> Play Soft Music
-        </button>
+    <button onclick="launchConfetti()" class="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold transition-all transform active:scale-95 shadow-lg shadow-emerald-500/20">
+      Celebrate Haseeb Bhai 🎈
+    </button>
+  </div>
 
-        <p class="message">
-            Aapki shandar qiyadat, be-misaal mehnat aur mukhlis rehnumai hum sab ke liye ek azeem misaal hai. 
-            Aap sirf ek kamyab businessman hi nahi, balkay har qadam par bhaiyon ki tarah sath dene wale azeem insan hain.
-        </p>
-
-        <div class="dua-box">
-            "Allah Ta'ala aapki umar, sehat, izzat aur karobar mein be-shumar barkat ata farmaye aur aane wala har saal mazeed taraqqi aur kamyabiyan lekar aaye. Ameen!"
-        </div>
-
-        <footer class="footer">
-            Dedicated with Deep Respect by <strong>Tahir Brothers</strong>
-        </footer>
-    </main>
-
-    <script>
-        const audio = document.getElementById('bgAudio');
-        const btn = document.getElementById('audioBtn');
-        let isPlaying = false;
-
-        function toggleAudio() {
-            if (!isPlaying) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    btn.innerHTML = '<span>⏸</span> Pause Music';
-                }).catch(() => {
-                    alert('Repo mein "music.mp3" upload karein ya direct online audio link lagayein.');
-                });
-            } else {
-                audio.pause();
-                isPlaying = false;
-                btn.innerHTML = '<span>▶</span> Play Soft Music';
-            }
-        }
-    </script>
+  <script>
+    function launchConfetti() {
+      confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+    }
+    // Auto blast on load
+    window.onload = () => { launchConfetti(); };
+  </script>
 </body>
 </html>
