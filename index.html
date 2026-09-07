@@ -10,12 +10,12 @@
     <style>
         :root {
             --bg: #090a0f;
-            --card-bg: rgba(18, 20, 29, 0.7);
+            --card-bg: rgba(18, 20, 29, 0.75);
             --gold: #d4af37;
             --gold-light: #f3e5ab;
             --text-main: #f0f2f5;
             --text-sub: #9aa2b1;
-            --border: rgba(212, 175, 55, 0.2);
+            --border: rgba(212, 175, 55, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -135,7 +135,6 @@
             color: #ffffff;
         }
 
-        /* Minimal Audio Toggle */
         .audio-btn {
             background: none;
             border: 1px solid var(--border);
@@ -164,7 +163,6 @@
 </head>
 <body>
 
-    <!-- Soft Ambient Audio -->
     <audio id="bgAudio" loop preload="auto">
         <source src="music.mp3" type="audio/mp3">
     </audio>
@@ -173,8 +171,7 @@
         <div class="tag">8th September • Celebration</div>
 
         <div class="photo-wrap">
-            <!-- Repo mein picture ka naam haseeb_boss.png ya haseeb_boss.jpg check kar lein -->
-            <img src="haseeb_boss.png" alt="Haseeb Bhai" onerror="this.src='haseeb_boss.jpg'">
+            <img src="haseeb_boss.jpg" alt="Haseeb Bhai">
         </div>
 
         <h1>Happy Birthday, Haseeb Bhai</h1>
@@ -195,7 +192,7 @@
         </div>
 
         <footer class="footer">
-            Dedicated with Respect by <strong>Tahir Brothers</strong>
+            Dedicated with Deep Respect by <strong>Tahir Brothers</strong>
         </footer>
     </main>
 
@@ -210,7 +207,7 @@
                     isPlaying = true;
                     btn.innerHTML = '<span>⏸</span> Pause Music';
                 }).catch(() => {
-                    alert('Audio file repo mein "music.mp3" ke naam se upload karein.');
+                    alert('Repo mein "music.mp3" upload karein ya direct online audio link lagayein.');
                 });
             } else {
                 audio.pause();
