@@ -1,17 +1,50 @@
-const birthdayWish = {
-  recipient: "Haseeb Bhai",
-  date: "8 September",
-  status: "Legendary & Blessed",
-  wishes: [
-    "Barkat aur lambi umar",
-    "Har maqsad mein kamyabi",
-    "Dheron khushiyan"
-  ],
-  from: "Tahir Brothers",
-  team: ["Mudassar Farid", "Mubashar Farid", "Musaddaq Farid"],
-  executeCelebration: () => {
-    return "Allah hamesha salamat aur khush rakhay! 🎂✨";
-  }
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Haseeb Bhai! 🎉</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
 
-console.log(birthdayWish.executeCelebration());
+  <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center shadow-2xl relative overflow-hidden">
+    <div class="text-6xl mb-4 animate-bounce">🎂</div>
+    
+    <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-950/60 border border-emerald-800/50 px-3 py-1 rounded-full">
+      8th September Special
+    </span>
+
+    <h1 class="text-3xl font-extrabold mt-4 text-white">
+      Happy Birthday, <br/><span class="text-emerald-400">Haseeb Bhai!</span>
+    </h1>
+
+    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+      Allah Tala aap ki zindagi mein sehat, lambi umar, be-shumar khushiyan aur kamyabiyan ata farmaye.
+    </p>
+
+    <div class="my-6 p-4 rounded-xl bg-slate-800/60 border border-slate-700/50 text-left">
+      <p class="text-xs text-slate-400 uppercase tracking-wider mb-2 font-mono">// Warmest Wishes From:</p>
+      <div class="font-semibold text-slate-200 space-y-1 text-sm">
+        <p class="text-emerald-300">Tahir Brothers</p>
+        <p>• Mudassar Farid</p>
+        <p>• Mubashar Farid</p>
+        <p>• Musaddaq Farid</p>
+      </div>
+    </div>
+
+    <button onclick="launchConfetti()" class="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold transition-all transform active:scale-95 shadow-lg shadow-emerald-500/20">
+      Celebrate Haseeb Bhai 🎈
+    </button>
+  </div>
+
+  <script>
+    function launchConfetti() {
+      confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+    }
+    // Auto blast on load
+    window.onload = () => { launchConfetti(); };
+  </script>
+</body>
+</html>
