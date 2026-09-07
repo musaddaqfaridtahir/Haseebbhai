@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Haseeb Boss | Babu Group of Companies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --gold-light: #f7e7a9;
+            --gold-dark: #aa820a;
+            --gold-gradient: linear-gradient(135deg, #f9f0d0 0%, #e6ca65 30%, #b8860b 70%, #8b6508 100%);
+            --bg-dark: #07090e;
+            --bg-card: rgba(18, 22, 34, 0.75);
+            --border-gold: rgba(212, 175, 55, 0.35);
+            --text-gold: #e8d08d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background-color: var(--bg-dark); color: #f0f0f0; overflow-x: hidden; position: relative; min-height: 100vh; }
+        #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+        #confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
+        #splashScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #151b29 0%, #06080d 100%);
+            z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s; padding: 20px; text-align: center;
+        }
+        #splashScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .envelope-box {
+            width: 120px; height: 120px; border-radius: 50%; background: var(--gold-gradient);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.6);
+            cursor: pointer; margin-bottom: 25px; animation: pulseGlow 2.5s infinite alternate; transition: transform 0.4s ease;
+        }
+        .envelope-box:hover { transform: scale(1.08); }
+        .envelope-icon { font-size: 48px; }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); transform: scale(1); }
+            100% { box-shadow: 0 0 65px rgba(212, 175, 55, 0.85); transform: scale(1.05); }
+        }
+
+        .splash-title {
+            font-family: 'Cinzel', serif; font-size: 28px; letter-spacing: 4px;
+            color: var(--gold-light); text-transform: uppercase; margin-bottom: 12px;
+        }
+        .splash-subtitle { font-size: 15px; color: #b0b8cc; letter-spacing: 2px; margin-bottom: 30px; max-width: 450px; line-height: 1.6; }
+        .unveil-btn {
+            background: var(--gold-gradient); color: #0b0e14; border: none; padding: 15px 42px;
+            font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            border-radius: 50px; cursor: pointer; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+        .unveil-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6); }
+
+        .main-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 40px 20px 100px; }
+        .site-header { text-align: center; margin-bottom: 45px; }
+        .executive-tag {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 22px;
+            border: 1px solid var(--gold-primary); border-radius: 30px; background: rgba(212, 175, 55, 0.08);
+            color: var(--gold-light); font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+        }
+
+        .hero-section { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 70px; }
+        .boss-photo-wrapper { position: relative; width: 240px; height: 270px; margin: 0 auto 30px; }
+        .photo-glow {
+            position: absolute; inset: -8px; border-radius: 28px; background: var(--gold-gradient);
+            filter: blur(15px); opacity: 0.65;
+        }
+        .boss-photo-card {
+            position: relative; width: 100%; height: 100%; border-radius: 24px; overflow: hidden;
+            border: 3px solid rgba(247, 231, 169, 0.7); box-shadow: 0 20px 40px rgba(0,0,0,0.8); background: #000;
+        }
+        .boss-photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+        .crown-badge {
+            position: absolute; top: -18px; right: -14px; background: var(--gold-gradient);
+            color: #0b0e14; width: 44px; height: 44px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 22px; border: 2px solid #ffffff; z-index: 5;
+        }
+
+        .boss-title {
+            font-family: 'Cinzel', serif; font-size: clamp(30px, 5vw, 50px); font-weight: 800;
+            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px; letter-spacing: 2px;
+        }
+        .boss-role { font-size: 17px; color: #d1d7e5; letter-spacing: 2px; margin-bottom: 12px; }
+        .boss-companies { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 15px; }
+        .company-pill {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--gold-light);
+        }
+
+        .section-heading {
+            font-family: 'Cinzel', serif; font-size: 28px; text-align: center;
+            color: var(--gold-light); margin-bottom: 35px; letter-spacing: 2px;
+        }
+        .section-heading::after {
+            content: ''; display: block; width: 80px; height: 2px; background: var(--gold-gradient); margin: 12px auto 0;
+        }
+
+        .tribute-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .tribute-card {
+            background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: 20px;
+            padding: 30px 24px; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .tribute-card .icon {
+            font-size: 32px; margin-bottom: 16px; display: inline-block; background: rgba(212, 175, 55, 0.1);
+            width: 55px; height: 55px; line-height: 55px; text-align: center; border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .tribute-card h3 { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 20px; margin-bottom: 12px; }
+        .tribute-card p { color: #b7c0d4; font-size: 14px; line-height: 1.7; }
+
+        .cake-section {
+            background: linear-gradient(135deg, rgba(21, 27, 43, 0.9) 0%, rgba(11, 14, 22, 0.9) 100%);
+            border: 1px solid var(--border-gold); border-radius: 24px; padding: 45px 25px; text-align: center;
+            margin-bottom: 60px;
+        }
+        .interactive-cake { display: inline-block; margin: 25px 0 20px; cursor: pointer; }
+        .cake-candles { display: flex; justify-content: center; gap: 20px; margin-bottom: 8px; }
+        .candle { width: 10px; height: 40px; background: linear-gradient(to bottom, #ffffff, #d4af37); border-radius: 4px; position: relative; }
+        .flame {
+            position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 14px; height: 18px;
+            background: radial-gradient(ellipse at bottom, #ffea78 0%, #ff7b00 70%, transparent 100%);
+            border-radius: 50% 50% 35% 35%; filter: drop-shadow(0 0 10px #ffbb00);
+            animation: flicker 0.7s infinite alternate ease-in-out;
+        }
+        .flame.off { opacity: 0; animation: none; }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            100% { transform: translateX(-50%) scale(1.15) rotate(3deg); }
+        }
+        .cake-tier-top { width: 130px; height: 36px; background: linear-gradient(135deg, #f7e7a9 0%, #d4af37 100%); border-radius: 10px 10px 0 0; margin: 0 auto; }
+        .cake-tier-bottom {
+            width: 180px; height: 46px; background: linear-gradient(135deg, #1b2438 0%, #0d121c 100%);
+            border-radius: 12px; margin: 0 auto; border: 2px solid var(--gold-primary); display: flex;
+            align-items: center; justify-content: center; color: var(--gold-light); font-size: 11px; font-weight: 700;
+        }
+        .action-btn {
+            background: var(--gold-gradient); color: #0b0e14; border: none; padding: 14px 34px;
+            font-size: 15px; font-weight: 700; letter-spacing: 1.5px; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35); margin-top: 10px;
+        }
+
+        .message-box {
+            background: linear-gradient(180deg, rgba(24, 30, 48, 0.85) 0%, rgba(14, 18, 28, 0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 24px; padding: 40px 30px; margin-bottom: 50px;
+        }
+        .urdu-tribute { font-size: 16px; line-height: 2; color: #e3e8f4; text-align: center; max-width: 850px; margin: 0 auto; }
+        .urdu-highlight { color: var(--gold-light); font-weight: 600; }
+        .dua-box {
+            margin-top: 25px; padding: 18px 25px; background: rgba(212, 175, 55, 0.08);
+            border-radius: 16px; border-left: 4px solid var(--gold-primary); text-align: center;
+            color: #f7e7a9; font-size: 15px; line-height: 1.8;
+        }
+
+        .audio-dock {
+            position: fixed; bottom: 20px; right: 20px; background: rgba(14, 18, 28, 0.92);
+            border: 1px solid var(--border-gold); border-radius: 50px; padding: 8px 18px;
+            display: flex; align-items: center; gap: 12px; z-index: 1000;
+        }
+        .audio-play-btn {
+            background: var(--gold-gradient); border: none; width: 36px; height: 36px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;
+        }
+        .audio-upload-label {
+            background: rgba(255, 255, 255, 0.08); border: 1px dashed var(--gold-primary);
+            color: var(--gold-light); padding: 6px 12px; font-size: 11px; border-radius: 20px; cursor: pointer;
+        }
+        #audioFileInput { display: none; }
+
+        .site-footer {
+            text-align: center; padding: 30px 15px; color: #7b8599; font-size: 13px;
+            letter-spacing: 1.5px; border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .wish-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85);
+            display: flex; align-items: center; justify-content: center; z-index: 10001; opacity: 0;
+            visibility: hidden; transition: all 0.4s ease; padding: 20px;
+        }
+        .wish-modal.active { opacity: 1; visibility: visible; }
+        .wish-modal-card {
+            background: linear-gradient(145deg, #182030, #0c101a); border: 2px solid var(--gold-primary);
+            border-radius: 24px; padding: 40px 30px; max-width: 500px; width: 100%; text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+    <canvas id="confettiCanvas"></canvas>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="splashScreen">
+        <div class="envelope-box" onclick="unveilCelebration()">
+            <span class="envelope-icon">👑</span>
+        </div>
+        <div class="splash-title">Executive Tribute</div>
+        <div class="splash-subtitle">
+            A special celebration honoring the leadership of <strong>Haseeb Boss</strong>.
+        </div>
+        <button class="unveil-btn" onclick="unveilCelebration()">✨ Tap To Celebrate & Play Music</button>
+    </div>
+
+    <div class="main-content">
+        <header class="site-header">
+            <div class="executive-tag">
+                <span>⭐</span> 8th September • Executive Celebration <span>⭐</span>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <div class="boss-photo-wrapper">
+                <div class="photo-glow"></div>
+                <div class="boss-photo-card">
+                    <!-- Photo file in the same folder -->
+                    <img src="haseeb_boss.jpg" alt="Haseeb Boss">
+                </div>
+                <div class="crown-badge">👑</div>
+            </div>
+
+            <h1 class="boss-title">Happy Birthday, Haseeb Boss!</h1>
+            <p class="boss-role">Visionary Businessman • Dynamic Leader • Inspiring Mentor</p>
+
+            <div class="boss-companies">
+                <div class="company-pill">🏢 Babu Group of Companies</div>
+                <div class="company-pill">⚡ Babu Electronics</div>
+            </div>
+        </section>
+
+        <h2 class="section-heading">The Pillars of Excellence</h2>
+        <section class="tribute-grid">
+            <div class="tribute-card">
+                <div class="icon">🏢</div>
+                <h3>Babu Group of Companies</h3>
+                <p>A symbol of relentless ambition and futuristic vision. Setting benchmarks of corporate excellence.</p>
+            </div>
+            <div class="tribute-card">
+                <div class="icon">⚡</div>
+                <h3>Babu Electronics</h3>
+                <p>Built on unmatched customer trust, authentic quality, and modern business standards.</p>
+            </div>
+            <div class="tribute-card">
+                <div class="icon">🎯</div>
+                <h3>Vision & Mentorship</h3>
+                <p>A leader who empowers dreams and leads by example. Your support is our greatest strength.</p>
+            </div>
+        </section>
+
+        <section class="cake-section">
+            <h2 class="section-heading" style="margin-bottom: 10px;">Make A Birthday Wish</h2>
+            <div class="interactive-cake" onclick="blowCandles()">
+                <div class="cake-candles">
+                    <div class="candle"><div class="flame"></div></div>
+                    <div class="candle"><div class="flame"></div></div>
+                    <div class="candle"><div class="flame"></div></div>
+                </div>
+                <div class="cake-tier-top"></div>
+                <div class="cake-tier-bottom">8TH SEPT • HASEEB BOSS</div>
+            </div>
+            <div>
+                <button class="action-btn" onclick="blowCandles()">🎂 Blow Candles & Celebrate</button>
+            </div>
+        </section>
+
+        <section class="message-box">
+            <h2 class="section-heading" style="margin-bottom: 20px;">A Heartfelt Tribute</h2>
+            <div class="urdu-tribute">
+                <p>
+                    <strong>Muhtaram Haseeb Boss!</strong><br>
+                    Aapki birthday hum sab ke liye ek bohot bari celebration ka din hai. 
+                    Aapne jis tarah mehnat aur visionary mindset ke sath <span class="urdu-highlight">Babu Electronics</span> aur 
+                    <span class="urdu-highlight">Babu Group of Companies</span> ko azeem maqam tak pohchaya hai, woh hum sab ke liye misaal hai.
+                </p>
+                <div class="dua-box">
+                    🤲 <strong>Dua hai:</strong> Allah Ta'ala aapki umar, sehat, izzat aur karobar mein be-shumar barkat ata farmaye. 
+                    Aane wala saal aapke liye be-panah taraqqi aur hamesha muskurahatein lekar aaye. Ameen! ✨
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            Crafted with Immense Respect for <strong>Haseeb Boss</strong> • 8th September
+        </footer>
+    </div>
+
+    <div class="audio-dock">
+        <button class="audio-play-btn" id="musicToggleBtn" onclick="toggleMusic()">▶</button>
+        <label class="audio-upload-label" for="audioFileInput">🎵 Choose Song</label>
+        <input type="file" id="audioFileInput" accept="audio/*" onchange="handleCustomAudio(this)">
+    </div>
+
+    <div class="wish-modal" id="wishModal">
+        <div class="wish-modal-card">
+            <div style="font-size: 45px; margin-bottom: 10px;">🎉👑</div>
+            <h2 style="font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 22px; margin-bottom: 15px;">
+                May Your Dreams Soar High!
+            </h2>
+            <p style="color: #cbd5e1; font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+                Haseeb Boss, aapki qiyadat mein Babu Group of Companies bulandiyon ko chhoo rahi hai. 
+                Hum dua go hain ke aapka har vision kamyab ho!
+            </p>
+            <button class="action-btn" onclick="closeWishModal()">Shukriya Haseeb Boss ❤️</button>
+        </div>
+    </div>
+
+    <script>
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const cCtx = confettiCanvas.getContext('2d');
+        let confettiParticles = [];
+
+        function resizeConfetti() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeConfetti);
+        resizeConfetti();
+
+        function createConfettiBurst(x, y, count = 100) {
+            const colors = ['#ffd700', '#f7e7a9', '#d4af37', '#ffffff', '#e65c00'];
+            for(let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 4 + Math.random() * 8;
+                confettiParticles.push({
+                    x: x || window.innerWidth / 2,
+                    y: y || window.innerHeight / 2,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 3,
+                    size: 6 + Math.random() * 6,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rSpeed: (Math.random() - 0.5) * 10,
+                    gravity: 0.18,
+                    life: 1,
+                    decay: 0.008 + Math.random() * 0.008
+                });
+            }
+        }
+
+        function updateConfetti() {
+            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            for(let i = confettiParticles.length - 1; i >= 0; i--) {
+                let p = confettiParticles[i];
+                p.x += p.vx; p.y += p.vy; p.vy += p.gravity; p.rotation += p.rSpeed; p.life -= p.decay;
+                if (p.life <= 0 || p.y > window.innerHeight + 20) {
+                    confettiParticles.splice(i, 1);
+                    continue;
+                }
+                cCtx.save();
+                cCtx.translate(p.x, p.y);
+                cCtx.rotate(p.rotation * Math.PI / 180);
+                cCtx.fillStyle = p.color;
+                cCtx.globalAlpha = p.life;
+                cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+                cCtx.restore();
+            }
+            requestAnimationFrame(updateConfetti);
+        }
+        updateConfetti();
+
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bCtx = bgCanvas.getContext('2d');
+        let bgParticles = [];
+
+        function resizeBg() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            bgParticles = [];
+            for (let i = 0; i < 55; i++) {
+                bgParticles.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    radius: Math.random() * 2 + 0.5,
+                    alpha: Math.random() * 0.7 + 0.3,
+                    speedY: Math.random() * 0.4 + 0.1,
+                    speedX: (Math.random() - 0.5) * 0.3
+                });
+            }
+        }
+        window.addEventListener('resize', resizeBg);
+        resizeBg();
+
+        function renderBg() {
+            bCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            for(let p of bgParticles) {
+                p.y -= p.speedY; p.x += p.speedX;
+                if(p.y < 0) p.y = bgCanvas.height;
+                if(p.x < 0) p.x = bgCanvas.width;
+                if(p.x > bgCanvas.width) p.x = 0;
+                bCtx.beginPath();
+                bCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                bCtx.fillStyle = `rgba(230, 202, 101, ${p.alpha})`;
+                bCtx.fill();
+            }
+            requestAnimationFrame(renderBg);
+        }
+        renderBg();
+
+        let audioCtx = null;
+        let synthInterval = null;
+        let isSynthPlaying = false;
+
+        function startSynthMusic() {
+            if (isSynthPlaying) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                audioCtx = new AudioContext();
+                isSynthPlaying = true;
+                const notes = [
+                    [261.63, 329.63, 392.00, 523.25],
+                    [220.00, 261.63, 329.63, 392.00],
+                    [174.61, 220.00, 261.63, 329.63],
+                    [196.00, 246.94, 293.66, 392.00]
+                ];
+                let chordIdx = 0;
+                function playChime(freq, delay, dur) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
+                    gain.gain.setValueAtTime(0.0001, audioCtx.currentTime + delay);
+                    gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + delay + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + delay + dur);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(audioCtx.currentTime + delay);
+                    osc.stop(audioCtx.currentTime + delay + dur + 0.1);
+                }
+                function triggerChord() {
+                    if (!isSynthPlaying) return;
+                    const chord = notes[chordIdx % notes.length];
+                    chord.forEach((note, idx) => { playChime(note, idx * 0.28, 1.8); });
+                    chordIdx++;
+                }
+                triggerChord();
+                synthInterval = setInterval(triggerChord, 2400);
+            } catch(e) {}
+        }
+
+        const bgMusic = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('musicToggleBtn');
+        let isAudioPlaying = false;
+
+        function playMusic() {
+            bgMusic.play().then(() => {
+                isAudioPlaying = true;
+                playBtn.innerText = '⏸';
+            }).catch(() => {
+                startSynthMusic();
+                isAudioPlaying = true;
+                playBtn.innerText = '⏸';
+            });
+        }
+
+        function pauseMusic() {
+            bgMusic.pause();
+            isSynthPlaying = false;
+            if (synthInterval) clearInterval(synthInterval);
+            isAudioPlaying = false;
+            playBtn.innerText = '▶';
+        }
+
+        function toggleMusic() {
+            if (isAudioPlaying) pauseMusic(); else playMusic();
+        }
+
+        function handleCustomAudio(input) {
+            if (input.files && input.files[0]) {
+                isSynthPlaying = false;
+                if (synthInterval) clearInterval(synthInterval);
+                bgMusic.src = URL.createObjectURL(input.files[0]);
+                bgMusic.play();
+                isAudioPlaying = true;
+                playBtn.innerText = '⏸';
+            }
+        }
+
+        function unveilCelebration() {
+            document.getElementById('splashScreen').classList.add('hidden');
+            playMusic();
+            createConfettiBurst(window.innerWidth * 0.3, window.innerHeight * 0.4, 80);
+            createConfettiBurst(window.innerWidth * 0.7, window.innerHeight * 0.4, 80);
+        }
+
+        function blowCandles() {
+            document.querySelectorAll('.flame').forEach(f => f.classList.add('off'));
+            createConfettiBurst(window.innerWidth * 0.5, window.innerHeight * 0.6, 180);
+            setTimeout(() => { document.getElementById('wishModal').classList.add('active'); }, 600);
+        }
+
+        function closeWishModal() {
+            document.getElementById('wishModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
